@@ -218,7 +218,7 @@ static void handleClient(SOCKET sock, SSL* ssl) {
 
     if (it != aliases.end()) {
         std::string target = it->second;
-        if (target.find("://") == std::string::npos) target = "https://" + target;
+        if (target.find("://") == std::string::npos) target = "http://" + target;
         response = makeResponse(302, "Found", {{"Location", target}}, "", "text/plain");
     } else if (req.method == "OPTIONS") {
         response = makeResponse(204, "No Content",
