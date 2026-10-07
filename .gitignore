@@ -1,0 +1,27 @@
+# Downloaded headers
+libs/
+
+# vcpkg
+vcpkg/
+openssl-static/
+
+# Build outputs (CMake)
+build/
+*.exe
+*.dll
+*.obj
+*.pdb
+*.exp
+*.lib
+*.ilk
+
+# Runtime / secrets
+cert.pfx
+cert.pem
+key.pem
+service.log
+
+# IDE
+.vs/
+*.user
+CMakeUserPresets.json
