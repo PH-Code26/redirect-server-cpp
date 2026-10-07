@@ -350,12 +350,13 @@ int main(int argc, char* argv[]) {
     if (envHttps) g_httpsPort = std::atoi(envHttps);
 
     fs::path exeDir = fs::path(argv[0]).parent_path();
+    fs::path projectRoot = exeDir.parent_path();
     if (!exeDir.empty()) fs::current_path(exeDir);
 
-    g_aliasesFile = (fs::path(exeDir) / "aliases.json").string();
-    g_certFile    = (fs::path(exeDir) / "cert.pem").string();
-    g_keyFile     = (fs::path(exeDir) / "key.pem").string();
-    g_pfxFile     = (fs::path(exeDir) / "cert.pfx").string();
+    g_aliasesFile = (projectRoot / "config" / "aliases.json").string();
+    g_certFile    = (projectRoot / "certs" / "cert.pem").string();
+    g_keyFile     = (projectRoot / "certs" / "key.pem").string();
+    g_pfxFile     = (projectRoot / "certs" / "cert.pfx").string();
 
     std::cout << "==================================" << std::endl;
     std::cout << "  URL Alias Redirect (C++)" << std::endl;

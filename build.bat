@@ -3,6 +3,8 @@ setlocal enabledelayedexpansion
 title Build URL-Alias-Redirect (C++)
 cd /d "%~dp0"
 
+if not exist "bin" mkdir bin
+
 echo ==============================================
 echo   Building URL Alias Redirect (C++)
 echo ==============================================
@@ -92,10 +94,10 @@ if exist "%SSL_LIB%\libssl_static.lib" (
 
 cl.exe /nologo /EHsc /O2 /MT /std:c++17 ^
     /I"%SSL_INC%" ^
-    server.cpp ^
+    src\server.cpp ^
     /link /LIBPATH:"%SSL_LIB%" ^
     !SSL_LIBS! crypt32.lib ws2_32.lib ^
-    /OUT:url-alias-redirect.exe
+    /OUT:bin\url-alias-redirect.exe
 
 if %errorlevel% neq 0 (
     echo   [FAIL] Compilation failed.
@@ -106,8 +108,8 @@ if %errorlevel% neq 0 (
 if not "!SSL_LIBS!"=="libssl_static.lib libcrypto_static.lib" (
     set SSL_BIN=%SSL_ROOT%\bin
     if exist "!SSL_BIN!\libssl-3-x64.dll" (
-        copy /y "!SSL_BIN!\libssl-3-x64.dll" "%~dp0" >nul 2>&1
-        copy /y "!SSL_BIN!\libcrypto-3-x64.dll" "%~dp0" >nul 2>&1
+        copy /y "!SSL_BIN!\libssl-3-x64.dll" "bin\" >nul 2>&1
+        copy /y "!SSL_BIN!\libcrypto-3-x64.dll" "bin\" >nul 2>&1
         echo   Copied libssl-3-x64.dll + libcrypto-3-x64.dll
     )
 )
@@ -115,9 +117,9 @@ if not "!SSL_LIBS!"=="libssl_static.lib libcrypto_static.lib" (
 echo.
 echo ==============================================
 echo   Build successful!
-echo   Binary: url-alias-redirect.exe
+echo   Binary: bin\url-alias-redirect.exe
 echo ==============================================
 echo.
-echo Now run: setup.bat  (as Administrator)
+echo Now run: scripts\setup.bat  (as Administrator)
 echo.
 pause

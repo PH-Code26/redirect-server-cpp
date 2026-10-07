@@ -1,5 +1,6 @@
-# Build outputs (CMake)
+# Build outputs
 build/
+bin/
 *.exe
 *.dll
 *.obj
@@ -9,10 +10,10 @@ build/
 *.ilk
 
 # Runtime / secrets
-cert.pfx
-cert.pem
-key.pem
-service.log
+certs/cert.pfx
+certs/cert.pem
+certs/key.pem
+log/service.log
 
 # IDE
 .vs/

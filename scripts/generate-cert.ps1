@@ -1,11 +1,12 @@
 $ErrorActionPreference = "Stop"
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-Set-Location $scriptDir
+$projectRoot = Split-Path -Parent $scriptDir
+Set-Location $projectRoot
 
-$pfxPath   = Join-Path $scriptDir "cert.pfx"
-$certPath  = Join-Path $scriptDir "cert.pem"
-$keyPath   = Join-Path $scriptDir "key.pem"
-$aliasesFile = Join-Path $scriptDir "aliases.json"
+$pfxPath   = Join-Path $projectRoot "certs\cert.pfx"
+$certPath  = Join-Path $projectRoot "certs\cert.pem"
+$keyPath   = Join-Path $projectRoot "certs\key.pem"
+$aliasesFile = Join-Path $projectRoot "config\aliases.json"
 $password    = "alias123"
 
 if (-not (Test-Path $aliasesFile)) {

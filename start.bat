@@ -9,5 +9,5 @@ echo.
 echo Listening on port 5666 (forwarded from 80)
 echo Press Ctrl+C to stop
 echo.
-url-alias-redirect.exe
+bin\url-alias-redirect.exe
 pause

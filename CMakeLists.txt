@@ -29,7 +29,7 @@ if(NOT OpenSSL_FOUND)
     message(WARNING "OpenSSL not found — HTTPS will be disabled. Install OpenSSL or use vcpkg/pacman.")
 endif()
 
-add_executable(url-alias-redirect server.cpp)
+add_executable(url-alias-redirect src/server.cpp)
 
 target_link_libraries(url-alias-redirect PRIVATE httplib::httplib nlohmann_json::nlohmann_json)
 
